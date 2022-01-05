@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .containerbox {
+      height: 300px;
+      border: 1px solid black;
+      display: flex;
+    }
+
+    .box {
+      font: 16px;
+      background: rgb(99, 201, 196);
+      flex-grow: 1;
+    }
+
+    .box2 {
+      background: rgb(30, 98, 138);
+      animation: flexanimation 1s ease-out 1s infinite alternate backwards;
+    }
+
+    @keyframes flexanimation {
+      100% {
+        flex-grow: 5;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="containerbox">
+    <div class="box">Box 1</div>
+    <div class="box2">Box 2</div>
+    <div class="box">Box 3</div>
+  </div>
+</body>
+
+</html>
