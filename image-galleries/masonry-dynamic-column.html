@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    .container {
+      background: #FF678C;
+      box-sizing: border-box;
+      display: flex;
+      flex-flow: column wrap;
+      height: 80vh;
+      margin-bottom: 5vh;
+      text-align: center;
+      text-transform: uppercase;
+      width: 90vw;
+    }
+
+    .card {
+      align-items: center;
+      background: white;
+      background-size: cover;
+      background-position: center;
+      border: 5px solid white;
+      box-sizing: border-box;
+      color: white;
+      display: flex;
+      flex-grow: 0;
+      font-family: sans-serif;
+      font-size: 30px;
+      font-weight: bold;
+      height: 50%;
+      justify-content: center;
+      outline: 5px solid white;
+      text-shadow: 0 0 5px black;
+    }
+
+    .card:nth-child(6n-5) {
+      height: 25%;
+    }
+
+    .card:nth-child(6n-4) {
+      height: 75%;
+    }
+
+    .card:nth-child(6n-3) {
+      height: 50%;
+    }
+
+    .card:nth-child(6n-2) {
+      height: 50%;
+    }
+
+    .card:nth-child(6n-1) {
+      height: 66.666%;
+    }
+
+    .card:nth-child(6n) {
+      height: 33.333%;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .background {
+      align-items: center;
+      background: #FF678C;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      justify-content: center;
+      width: 100vw;
+    }
+
+    button {
+      background: white;
+      border: 2px solid transparent;
+      border-radius: 0;
+      color: #FF648A;
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: bold;
+      padding: 10px 20px;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #FF648A;
+      border: 2px solid white;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- https://codepen.io/CAWeissen/pen/xxxQpba -->
+  <div class="background">
+    <div class="container" data-container>
+      <div class="card" data-card style="background-image: url('https://source.unsplash.com/random/1')">1</div>
+      <div class="card" style="background-image: url('https://source.unsplash.com/random/2')">2</div>
+      <div class="card" style="background-image: url('https://source.unsplash.com/random/3')">3</div>
+      <div class="card" style="background-image: url('https://source.unsplash.com/random/4')">4</div>
+      <div class="card" style="background-image: url('https://source.unsplash.com/random/5')">5</div>
+      <div class="card" style="background-image: url('https://source.unsplash.com/random/6')">6</div>
+    </div>
+    <div class="buttons">
+      <button data-remove>–</button>
+      <button data-add>+</button>
+    </div>
+  </div>
+
+  <script>
+    // Add or remove images on random column size
+    const add = document.querySelector('[data-add]');
+    const remove = document.querySelector('[data-remove]');
+    const card = document.querySelector('[data-card]');
+    const container = document.querySelector('[data-container]');
+    let number = 7;
+
+    add.addEventListener('click', () => {
+      const addCard = card.cloneNode(true);
+      const image = `url('https://source.unsplash.com/random/${Math.floor(Math.random() * 100)}')`;
+      addCard.style.backgroundImage = image;
+      addCard.innerHTML = number;
+      container.appendChild(addCard);
+      number++;
+    });
+
+    remove.addEventListener('click', () => {
+      if (container.childElementCount > 0) {
+        container.removeChild(container.lastElementChild);
+      }
+
+      if (number > 1) {
+        number--;
+      }
+    });
+  </script>
+
+</body>
+
+</html>

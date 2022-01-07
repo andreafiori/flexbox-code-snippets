@@ -1,52 +1,56 @@
-<!doctype html>
-<title>Example</title>
-<style>
-  * {
-    box-sizing: border-box;
-  }
+<!DOCTYPE html>
 
-  body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    margin: 0;
-  }
+<head>
+  <title>Example</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  #main {
-    display: flex;
-    flex: 1;
-  }
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+      margin: 0;
+    }
 
-  #main>article {
-    flex: 1;
-  }
+    #main {
+      display: flex;
+      flex: 1;
+    }
 
-  #main>nav,
-  #main>aside {
-    flex: 0 0 20vw;
-    background: beige;
-  }
+    #main>article {
+      flex: 1;
+    }
 
-  #main>nav {
-    order: -1;
-  }
+    #main>nav,
+    #main>aside {
+      flex: 0 0 20vw;
+      background: beige;
+    }
 
-  header,
-  footer {
-    background: yellowgreen;
-    height: 20vh;
-  }
+    #main>nav {
+      order: -1;
+    }
 
-  header,
-  footer,
-  article,
-  nav,
-  aside {
-    padding: 1em;
-  }
-</style>
+    header,
+    footer {
+      background: yellowgreen;
+      height: 20vh;
+    }
+
+    header,
+    footer,
+    article,
+    nav,
+    aside {
+      padding: 1em;
+    }
+  </style>
+</head>
 
 <body>
+
   <header>Header</header>
   <div id="main">
     <article>Article</article>
@@ -54,4 +58,7 @@
     <aside>Aside</aside>
   </div>
   <footer>Footer</footer>
+
 </body>
+
+</html>

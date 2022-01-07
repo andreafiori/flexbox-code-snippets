@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    div#masonry {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      height: 100vw;
+      font-size: 0;
+    }
+
+    div#masonry div {
+      width: 33.333333%;
+      transition: opacity 0.3s;
+    }
+
+    div#masonry div img {
+      width: 100%;
+      display: block;
+    }
+
+    div#masonry:hover div {
+      opacity: 0.7;
+    }
+
+    div#masonry:hover div:hover {
+      opacity: 1;
+    }
+
+    @media only screen and (max-width: 500px) {
+      div#masonry {
+        height: 250vw;
+      }
+
+      div#masonry div {
+        width: 50%;
+      }
+
+      div#masonry div img {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="masonry">
+    <div><img src="http://cs4.pikabu.ru/post_img/big/2014/10/23/8/1414062701_1470438206.jpg" alt></div>
+    <div><img src="https://25.media.tumblr.com/tumblr_mczk4i9zts1qb16uio1_500.jpg" alt></div>
+    <div><img src="http://images6.fanpop.com/image/photos/36000000/nature-mother-nature-36002556-1920-1080.jpg" alt>
+    </div>
+    <div><img src="http://fandosug.club/uploads/posts/2014-11/1417278223_friday-inspiration-84-2.jpg" alt></div>
+    <div><img
+        src="http://static.boredpanda.com/blog/wp-content/uploads/2014/11/mordor-mountain-photography-jakub-polomski-fb.jpg"
+        alt></div>
+    <div><img src="https://pp.userapi.com/c629502/v629502438/184bb/RZnDWXArj4E.jpg" alt></div>
+    <div><img src="https://farm3.staticflickr.com/2826/10800880905_ce7790ce43_b.jpg" alt></div>
+    <div><img src="http://naturespicwallpaper.com/wp-content/uploads/2014/02/Nature-Mountain-HD-Wallpaper.jpg" alt>
+    </div>
+    <div><img src="https://pp.userapi.com/c639917/v639917438/117fd/pHAyyKf9LYA.jpg" alt></div>
+  </div>
+
+</body>
+
+</html>
