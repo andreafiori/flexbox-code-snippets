@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8" />
+  <title>Example</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      transition: all 1s;
+    }
+
+    body {
+      background: #f7edb7;
+      color: #272f30;
+      font: 16px Oxygen, Arial, Helvetica, sans-serif;
+      font-weight: 300;
+      padding: 50px 0;
+    }
+
+    ul,
+    li {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .element-hidden {
+      display: none;
+    }
+
+    .plan-name,
+    .plan-price,
+    .plan-details,
+    .button,
+    .more-options,
+    .best-choice {
+      padding: 10px;
+    }
+
+    .plans {
+      margin: 0 auto;
+      max-width: 80%;
+      display: flex;
+      flex-flow: row wrap;
+      position: relative;
+    }
+    .plans .plan-box {
+      display: flex;
+      width: 33.3333%;
+      background: #fffcef;
+      margin: 10px 0;
+      min-height: 650px;
+    }
+    .plans .plan-box .best-choice {
+      background: #d5fffc;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #437299;
+      box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 0.15),
+        inset 0 2px 3px rgba(0, 0, 0, 0.15);
+      margin-top: auto;
+    }
+    .plans .plan-box:hover {
+      margin-top: -15px;
+      background: white;
+    }
+    @media all and (max-width: 700px) {
+      .plans .plan-box:hover {
+        margin-top: 10px;
+      }
+    }
+    .plans .plan-box:hover .plan-name {
+      color: black;
+    }
+    .plans .plan-box:hover .plan-price {
+      background: #be1100;
+      box-shadow: inset 0 -4px 3px rgba(0, 0, 0, 0.15),
+        inset 0 4px 3px rgba(0, 0, 0, 0.15);
+      text-align: center;
+    }
+    .plans .plan-box:hover .more-options {
+      display: block;
+      padding: 20px;
+      text-align: right;
+      position: relative;
+    }
+    .plans .plan-box:hover .more-options .additional-options {
+      position: relative;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+    }
+    .plans .plan-box:hover .more-options a {
+      color: #9e2b20;
+      text-decoration: none;
+    }
+    @media all and (max-width: 700px) {
+      .plans .plan-box:first-child {
+        margin-bottom: 20px;
+      }
+    }
+    .plans .plan-box:nth-child(2) {
+      margin-top: 0;
+      box-shadow: -3px 0 3px rgba(0, 0, 0, 0.15), 3px 0 3px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+    .plans .plan-box:nth-child(2):hover {
+      margin-top: -35px;
+    }
+    @media all and (max-width: 700px) {
+      .plans .plan-box:nth-child(2):hover {
+        margin-top: 0px;
+        marign-right: -30px;
+      }
+    }
+    @media all and (max-width: 700px) {
+      .plans .plan-box {
+        width: 100%;
+      }
+    }
+    .plans .plan-name {
+      font: 300 32px Oswald, Arial, Helvetica, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+    .plans .plan-price {
+      background: #9e2b20;
+      color: white;
+      display: flex;
+      font: 24px Oswald, Arial, Helvetica, sans-serif;
+      padding: 20px 10px;
+      text-align: center;
+    }
+    .plans .plan-price strong {
+      font-size: 34px;
+      align-self: baseline;
+      line-height: 1;
+      font-weight: 500;
+    }
+    .plans .plan-options {
+      display: flex;
+      flex-flow: column;
+      width: 100%;
+    }
+    .plans .plan-options li {
+      border-bottom: 1px solid #cdcdcd;
+      padding: 5px 0;
+      margin: 5px 0;
+    }
+    .plans .plan-options .button {
+      margin-top: auto;
+      display: block;
+      background: #e0401c;
+      color: white;
+      text-align: center;
+      font: 24px Oswald, Arial, Helvetica, sans-serif;
+      text-decoration: none;
+    }
+    .plans .plan-options .button:hover {
+      background: #ed380f;
+    }
+  </style>
+  <body>
+    <div class="plans">
+      <div class="plan-box">
+        <div class="plan-options">
+          <p class="plan-name">Personal</p>
+          <div class="plan-price">
+            <strong>Free</strong>
+          </div>
+          <ul class="plan-details">
+            <li>1 sub-domain</li>
+            <li><strong>10</strong> email addresses</li>
+            <li><strong>Unlimited</strong> Bandwidth</li>
+            <li><strong>20GB</strong> Storage</li>
+            <li>Support Ads</li>
+            <li>Shared Hosting</li>
+            <li><strong>24/7</strong> Customer Support</li>
+          </ul>
+
+          <div class="element-hidden more-options">
+            <a href="#">+ more options</a>
+            <div class="element-hidden additional-options">
+              <p>
+                If you need more options, please consider our
+                <a href="#">Premium</a> or <a href="#">Pro</a> plans.
+              </p>
+            </div>
+          </div>
+
+          <a class="button" href="#">Choose</a>
+        </div>
+      </div>
+
+      <div class="plan-box">
+        <div class="plan-options">
+          <p class="plan-name">Premium</p>
+          <div class="plan-price"><strong>$19</strong>/mo</div>
+          <ul class="plan-details">
+            <li><strong>FREE</strong> custom domain</li>
+            <li><strong>Unlimited</strong> email addresses</li>
+            <li><strong>Unlimited</strong> Bandwidth</li>
+            <li><strong>100GB</strong> Storage</li>
+            <li><strong>No Support Ads</strong></li>
+            <li><strong>24/7</strong> Customer Support</li>
+          </ul>
+
+          <div class="element-hidden more-options">
+            <a href="#">+ more options</a>
+            <div class="element-hidden additional-options">
+              <ul>
+                <li>
+                  <input type="checkbox" id="10gb" name="extragigs" />
+                  <label for="10gb">10GB more storage</label>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Hiding until I think of a better style
+          <div class="best-choice">
+              Voted Best Choice
+          </div> -->
+
+          <a class="button" href="#">Choose</a>
+        </div>
+      </div>
+
+      <div class="plan-box">
+        <div class="plan-options">
+          <p class="plan-name">Pro</p>
+          <div class="plan-price"><strong>$50</strong>/mo</div>
+          <ul class="plan-details">
+            <li><strong>FREE</strong> custom domain</li>
+            <li><strong>Unlimited</strong> email addresses</li>
+            <li><strong>Unlimited</strong> Bandwidth</li>
+            <li><strong>200GB</strong> Storage</li>
+            <li><strong>No Support Ads</strong></li>
+            <li><strong>Quick Install</strong> Apps (WordPress, etc)</li>
+            <li><strong>VPS Hosting</strong></li>
+            <li><strong>24/7</strong> Customer Support</li>
+          </ul>
+
+          <div class="element-hidden more-options">
+            <a href="#">+ more options</a>
+            <div class="element-hidden additional-options">
+              <ul>
+                <li>
+                  <input type="checkbox" id="10gb" name="extragigs" />
+                  <label for="10gb">10GB more storage</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="marketing" name="marketing" />
+                  <label for="marketing"
+                    >SEO and Marketing Monthly Evaluation</label
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <a class="button" href="#">Choose</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+      $(".more-options a").click(function (e) {
+        $(this).next(".additional-options").slideToggle();
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>

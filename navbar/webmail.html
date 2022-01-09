@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Flexbox Navbar</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    >
+    <style>
+      .siteHeader {
+        /**
+        * Lay out the children of this container with
+        * flexbox, which is horizontal by default.
+        */
+        display: flex;
+
+        /**
+   * Make the container put as much space as possible
+   * between its children, with the children at either
+   * end laying flush against the container's edges.
+   */
+        justify-content: space-between;
+
+        padding: 10px;
+        background-color: #56727c;
+      }
+
+      .siteHeader__section {
+        /**
+     * Lay out the children of this container with
+     * flexbox.
+     */
+        display: flex;
+
+        /**
+     * Align the children in the center, along
+     * the main axis. By default the children will
+     * align along their top edges.
+     */
+        align-items: center;
+      }
+
+      .siteHeader__item {
+        padding: 5px 15px;
+        font-size: 12px;
+      }
+
+      .siteHeader__item + .siteHeader__item {
+        margin-left: 5px;
+      }
+
+      .siteHeader__item.is-site-header-item-selected {
+        color: #ffffff;
+        background-color: #415f69;
+        border-radius: 4px;
+      }
+
+      .siteHeaderLogo {
+        font-size: 20px;
+        line-height: 0;
+        color: white;
+      }
+
+      .siteHeaderButton {
+        cursor: pointer;
+        color: #d9e9ef;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="siteHeader">
+      <!-- This section gets pushed to the left side-->
+      <div class="siteHeader__section">
+        <div class="siteHeader__item siteHeaderLogo">
+          <div class="fa fa-inbox"></div>
+        </div>
+        <div
+          class="siteHeader__item siteHeaderButton is-site-header-item-selected"
+        >
+          Inbox
+        </div>
+        <div class="siteHeader__item siteHeaderButton">Sent</div>
+        <div class="siteHeader__item siteHeaderButton">Trash</div>
+      </div>
+      <!-- This section gets pushed to the right side-->
+      <div class="siteHeader__section">
+        <div class="siteHeader__item siteHeaderButton">Settings</div>
+        <div class="siteHeader__item siteHeaderButton">Log out</div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var $siteHeaderItems = $(".siteHeader .siteHeader__item");
+
+      $siteHeaderItems.click((event) => {
+        var selectedClass = "is-site-header-item-selected";
+        $siteHeaderItems.removeClass(selectedClass);
+        $(event.target).addClass(selectedClass);
+      });
+    </script>
+  </body>
+</html>

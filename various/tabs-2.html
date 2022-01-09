@@ -1,0 +1,192 @@
+<!-- https://codepen.io/josh_vogt/pen/EaaZbP -->
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8" />
+  <title>Example</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+  <style>
+    /* Android 2.3 :checked fix */
+    @-webkit-keyframes fake {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes fake {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    body {
+      -webkit-animation: fake 1s infinite;
+      animation: fake 1s infinite;
+      font-family: 'Roboto';font-size: 22px;
+    }
+
+    .worko-tabs {
+      margin: 20px;
+      width: 80%;
+    }
+    .worko-tabs .state {
+      position: absolute;
+      left: -10000px;
+    }
+    .worko-tabs .flex-tabs {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .worko-tabs .flex-tabs .tab {
+      flex-grow: 1;
+      max-height: 40px;
+    }
+    .worko-tabs .flex-tabs .panel {
+      background-color: #fff;
+      padding: 20px;
+      min-height: 300px;
+      display: none;
+      width: 100%;
+      flex-basis: auto;
+    }
+    .worko-tabs .tab {
+      display: inline-block;
+      padding: 10px;
+      vertical-align: top;
+      background-color: #eee;
+      cursor: hand;
+      cursor: pointer;
+      border-left: 10px solid #ccc;
+    }
+    .worko-tabs .tab:hover {
+      background-color: #fff;
+    }
+
+    #tab-one:checked ~ .tabs #tab-one-label,
+    #tab-two:checked ~ .tabs #tab-two-label,
+    #tab-three:checked ~ .tabs #tab-three-label,
+    #tab-four:checked ~ .tabs #tab-four-label {
+      background-color: #fff;
+      cursor: default;
+      border-left-color: #69be28;
+    }
+
+    #tab-one:checked ~ .tabs #tab-one-panel,
+    #tab-two:checked ~ .tabs #tab-two-panel,
+    #tab-three:checked ~ .tabs #tab-three-panel,
+    #tab-four:checked ~ .tabs #tab-four-panel {
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .flex-tabs {
+        flex-direction: column;
+      }
+      .flex-tabs .tab {
+        background: #fff;
+        border-bottom: 1px solid #ccc;
+      }
+      .flex-tabs .tab:last-of-type {
+        border-bottom: none;
+      }
+      .flex-tabs #tab-one-label {
+        order: 1;
+      }
+      .flex-tabs #tab-two-label {
+        order: 3;
+      }
+      .flex-tabs #tab-three-label {
+        order: 5;
+      }
+      .flex-tabs #tab-four-label {
+        order: 7;
+      }
+      .flex-tabs #tab-one-panel {
+        order: 2;
+      }
+      .flex-tabs #tab-two-panel {
+        order: 4;
+      }
+      .flex-tabs #tab-three-panel {
+        order: 6;
+      }
+      .flex-tabs #tab-four-panel {
+        order: 8;
+      }
+
+      #tab-one:checked ~ .tabs #tab-one-label,
+      #tab-two:checked ~ .tabs #tab-two-label,
+      #tab-three:checked ~ .tabs #tab-three-label,
+      #tab-four:checked ~ .tabs #tab-four-label {
+        border-bottom: none;
+      }
+
+      #tab-one:checked ~ .tabs #tab-one-panel,
+      #tab-two:checked ~ .tabs #tab-two-panel,
+      #tab-three:checked ~ .tabs #tab-three-panel,
+      #tab-four:checked ~ .tabs #tab-four-panel {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  </style>
+  <body>
+    <div class="worko-tabs">
+      <input
+        class="state"
+        type="radio"
+        title="tab-one"
+        name="tabs-state"
+        id="tab-one"
+        checked
+      />
+      <input
+        class="state"
+        type="radio"
+        title="tab-two"
+        name="tabs-state"
+        id="tab-two"
+      />
+      <input
+        class="state"
+        type="radio"
+        title="tab-three"
+        name="tabs-state"
+        id="tab-three"
+      />
+      <input
+        class="state"
+        type="radio"
+        title="tab-four"
+        name="tabs-state"
+        id="tab-four"
+      />
+
+      <div class="tabs flex-tabs">
+        <label for="tab-one" id="tab-one-label" class="tab">Tab One</label>
+        <label for="tab-two" id="tab-two-label" class="tab">Tab Two</label>
+        <label for="tab-three" id="tab-three-label" class="tab"
+          >Tab Three</label
+        >
+        <label for="tab-four" id="tab-four-label" class="tab">Tab Four</label>
+
+        <div id="tab-one-panel" class="panel active">
+          <h3>Responsive CSS Tabs - Flexbox</h3>
+          <p>
+            CSS only tabs built using flexbox, when the viewport drops below
+            600px wide the tabs turn into an accordion by chaging the flex order
+            of the elements.
+          </p>
+        </div>
+        <div id="tab-two-panel" class="panel">Tab two content</div>
+        <div id="tab-three-panel" class="panel">Tab three content</div>
+        <div id="tab-four-panel" class="panel">Tab four content</div>
+      </div>
+    </div>
+  </body>
+</html>
