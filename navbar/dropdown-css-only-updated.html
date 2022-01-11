@@ -1,0 +1,424 @@
+<!-- See https://codepen.io/gjdgraaf/pen/WKPOmM -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Example</title>
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      /* ==========================================
+          RESET
+      ===========================================*/
+
+      * {
+        box-sizing: border-box;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        text-decoration: none;
+      }
+
+      /*====================================
+        BASE STYLES
+      ====================================*/
+
+      body {
+        background: #333;
+      }
+
+      * {
+        font-family: "Vollkorn", Arial, serif;
+        font-size: 1em;
+      }
+
+      #main {
+        background-color: #ddd;
+        padding-top: 120px;
+        min-height: 500px;
+        margin-left: 60px;
+        margin-right: 60px;
+      }
+      .content {
+        margin-top: 100px;
+      }
+      p {
+        margin-bottom: 30px;
+      }
+
+      .wrapper {
+        width: 100%;
+      }
+
+      /*====================================
+        HEADER STYLES
+      ====================================*/
+      header {
+        background: #e9e9e9;
+        box-shadow: 0px -3px 15px 2px;
+        display: flex;
+      }
+
+      .header-container {
+        background: #eee;
+        width: 100%;
+        margin: auto;
+        display: flex;
+        flex-direction: row; /* Logo starts stacked on top of nav */
+        align-items: center;
+        position: fixed; /* headeralign-content on top of the screen to have content scrolling away behind the nav bar */
+      }
+
+      .logo {
+        max-width: 120px;
+        max-height: 120px;
+        margin-top: 10px;
+      }
+
+      /*====================================
+        MENU STYLES
+      ====================================*/
+
+      .main-menu {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-top: 25px; /* Space for logo */
+        overflow: visible;
+        max-width: 700px; /* Keeps the buttons getting too far from each other on largest screens */
+      }
+      .main-menu .toggleNav {
+        display: none;
+      }
+      .main-menu a {
+        width: 100%;
+        text-align: center;
+        padding: 0.75em 1em;
+        display: block;
+        color: blueviolet;
+        border-bottom: 2px solid #ddd;
+      }
+
+      .main-menu a:hover {
+        color: #c14400;
+        border-bottom-color: #c14400;
+      }
+
+      /*====================================
+        DROPDOWN MENU STYLES
+      ====================================*/
+
+      /* The hidden-at-first drop menus */
+      .drop-menu {
+        display: flex;
+        flex-direction: column; /* This never changes */
+        align-items: center;
+        width: 100%; /* Allows sub buttons to stretch across button width in main-menu*/
+        transition: max-height 0.4s, opacity 0.3s;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden; /* Keeps links in drop menu from displaying until height is large enough */
+      }
+
+      .drop-menu > .menu-button {
+        height: 100%;
+        transition: transform 0.4s;
+        transform: translateY(-300%);
+        background: #aaa; /* Makes the menu effects visible on close */
+      }
+
+      /* Makes for easy identifying when the drop menu is open */
+      .dropdown-wrapper:hover > .menu-button {
+        color: #c14400;
+        background: #333;
+      }
+
+      /* The dropdown-wrapper wraps both the .main-menu button and drop down menu */
+      /* Expands .drop-menu to children height, not setting an expicit height allows variable # of buttons */
+      .dropdown-wrapper:hover .drop-menu {
+        max-height: 300px;
+        opacity: 1;
+      }
+
+      /* The specifity keeps styles from affecting main menu button */
+      .dropdown-wrapper:hover > .drop-menu .menu-button {
+        transform: translateY(0%);
+      }
+
+      /*====================================
+      Social media buttons
+      =====================================*/
+      .main-menu ul {
+        background-color: yellow;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex: 1;
+      }
+
+      .main-menu li {
+        flex: 3;
+      }
+
+      .main-menu .social {
+        flex: 1;
+      }
+
+      /*====================================
+        MEDIA QUERIES
+      ====================================*/
+      @media all and (max-width: 500px) {
+        .main-menu li {
+          flex-basis: 100%;
+        }
+        .wrapper {
+          display: flex;
+          flex-direction: column;
+        }
+        .wrapper > * {
+          order: 5000;
+        }
+        .main-menu {
+          order: 1;
+        }
+        .togglenav {
+          display: block;
+        }
+        .main-menu ul {
+          display: none;
+        }
+        .main-menu ul.open {
+          display: flex;
+        }
+      }
+
+      @media (min-width: 550px) {
+        /*====================================
+          DROP-MENU EFFECTS (LARGER SCREENS)
+        ====================================*/
+
+        /* Resets dropdown styles to not affect the effects. Overflow still set to hidden allows for menu effects like sliding in */
+        .effect {
+          transition: max-height 0s;
+          opacity: 1;
+          background: transparent;
+        }
+        .effect .menu-button {
+          transform: translateY(0%);
+        }
+
+        .fade-in .menu-button {
+          transition: opacity 0.5s;
+          opacity: 0;
+        }
+        .dropdown-wrapper:hover .fade-in .menu-button {
+          opacity: 1;
+        }
+
+        .header-container {
+          width: 100%;
+        }
+
+        .header-container {
+          /* height: 160px; */
+          justify-content: space-between; /* Pushes logo to top, nav bar all the way down */
+        }
+        .main-menu {
+          flex-direction: row; /* Horizontal main menu buttons */
+          align-items: flex-start; /* Makes the top of the 'dropdown-wrapper' div stay flush with button top because it's aligned on the cross-axis */
+          height: 48px; /* Setting the height allows the dropdown outside of it's parent's bounds, therefore not compensated for by the flex. */
+          margin: 0;
+          flex-wrap: nowrap;
+        }
+        .main-menu > .menu-button {
+          width: 23%;
+          max-width: 150px;
+        }
+        .logo {
+          max-width: 130px;
+          max-height: 130px;
+          margin-top: 15px;
+        }
+      }
+
+      @media (min-width: 850px) {
+        .header-container {
+          flex-direction: row; /* Places logo on the same line as .main-menu */
+          /* justify-content: space-around; */
+          justify-content: space-between;
+          /* height: 160px; */
+        }
+        .main-menu {
+          width: 60%;
+          justify-content: space-between;
+        }
+        .logo {
+          margin: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="header-container">
+          <a href="#">
+            <img
+              class="logo"
+              src="https://www.freeiconspng.com/uploads/sailing-boat-png-29.png"
+              alt="Sailboat"
+            />
+          </a>
+
+          <nav class="main-menu">
+            <a href="#" class="toggleNav">= Menu</a>
+            <a class="menu-button" href="#">Welcome</a>
+            <div class="dropdown-wrapper menu-button">
+              <a class="menu-button" href="#">About me</a>
+
+              <div class="drop-menu">
+                <a class="menu-button" href="#">Menu A</a>
+                <a class="menu-button" href="#">Menu B</a>
+                <a class="menu-button" href="#">Menu C</a>
+              </div>
+            </div>
+            <div class="dropdown-wrapper menu-button">
+              <a class="menu-button" href="#">Portfolio</a>
+              <div class="drop-menu">
+                <a class="menu-button" href="#">Menu K</a>
+                <a class="menu-button" href="#">Menu L</a>
+                <a class="menu-button" href="#">Menu M</a>
+                <a class="menu-button" href="#">Menu N</a>
+                <a class="menu-button" href="#">Menu O</a>
+                <a class="menu-button" href="#">Dropdown</a>
+              </div>
+            </div>
+            <div class="dropdown-wrapper menu-button">
+              <a class="menu-button" href="#">Contact</a>
+              <div class="drop-menu">
+                <a class="menu-button" href="#">Sub</a>
+                <a class="menu-button" href="#">Sup</a>
+                <a class="menu-button" href="#">Board</a>
+              </div>
+            </div>
+            <ul>
+              <li class="social">
+                <a
+                  href="https://www.facebook.com/uisgebeatha.eu/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li class="social">
+                <a
+                  href="https://twitter.com/GJdeGraaf"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li class="social">
+                <a
+                  href="https://nl.pinterest.com/gjdgraaf/uisge-beatha/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <i class="fa fa-pinterest"></i>
+                </a>
+              </li>
+              <li class="social">
+                <a href="rssfeed.rss" target="_blank" rel="noopener">
+                  <i class="fa fa-rss"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <div id="main">
+        <div class="content">
+          <h1>Content</h1>
+          <p>
+            L Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+            commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+            penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+            Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+            Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+            aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
+            imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
+            mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum
+            semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
+            porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem
+            ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra
+            nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.
+            Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies
+            nisi. Nam eget dui.
+          </p>
+          <p>
+            Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem
+            quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam
+            quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem.
+            Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut
+            libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci
+            eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit
+            amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget
+            bibendum sodales, augue velit cursus nunc, quis gravida magna mi a
+            libero. Fusce vulputate eleifend sapien. Vestibulum purus quam,
+            scelerisque ut, mollis sed, nonummy id, metus. Nullam accumsan lorem
+            in dui. Cras ultricies mi eu turpis hendrerit fringilla. Vestibulum
+            ante ipsum primis in faucibus orci luctus et ultrices posuere
+            cubilia Curae; In ac dui quis mi consectetuer lacinia.
+          </p>
+          <p>
+            Nam pretium turpis et arcu. Duis arcu tortor, suscipit eget,
+            imperdiet nec, imperdiet iaculis, ipsum. Sed aliquam ultrices
+            mauris. Integer ante arcu, accumsan a, consectetuer eget, posuere
+            ut, mauris. Praesent adipiscing. Phasellus ullamcorper ipsum rutrum
+            nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero. Cras
+            id dui. Aenean ut eros et nisl sagittis vestibulum. Nullam nulla
+            eros, ultricies sit amet, nonummy id, imperdiet feugiat, pede. Sed
+            lectus. Donec mollis hendrerit risus. Phasellus nec sem in justo
+            pellentesque facilisis. Etiam imperdiet imperdiet orci. Nunc nec
+            neque. Phasellus leo dolor, tempus non, auctor et, hendrerit quis,
+            nisi.
+          </p>
+          <p>
+            Curabitur ligula sapien, tincidunt non, euismod vitae, posuere
+            imperdiet, leo. Maecenas malesuada. Praesent congue erat at massa.
+            Sed cursus turpis vitae tortor. Donec posuere vulputate arcu.
+            Phasellus accumsan cursus velit. Vestibulum ante ipsum primis in
+            faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam,
+            nisi quis porttitor congue, elit erat euismod orci, ac placerat
+            dolor lectus quis orci. Phasellus consectetuer vestibulum elit.
+            Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc.
+            Vestibulum fringilla pede sit amet augue. In turpis. Pellentesque
+            posuere. Praesent turpis.
+          </p>
+          <p>
+            Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc,
+            eu sollicitudin urna dolor sagittis lacus. Donec elit libero,
+            sodales nec, volutpat a, suscipit non, turpis. Nullam sagittis.
+            Suspendisse pulvinar, augue ac venenatis condimentum, sem libero
+            volutpat nibh, nec pellentesque velit pede quis nunc. Vestibulum
+            ante ipsum primis in faucibus orci luctus et ultrices posuere
+            cubilia Curae; Fusce id purus. Ut varius tincidunt libero. Phasellus
+            dolor. Maecenas vestibulum mollis diam. Pellentesque ut neque.
+            Pellentesque habitant morbi tristique senectus et netus et malesuada
+            fames ac turpis egestas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
