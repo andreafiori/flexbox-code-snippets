@@ -1,0 +1,142 @@
+<!-- See https://codepen.io/levonium/pen/LQpzmJ -->
+<!DOCTYPE html>
+
+<head>
+  <title>Example</title>
+  <style>
+    body {
+      background-color: #93d87982;
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    * {
+      box-sizing: inherit;
+    }
+
+    .wrapper {
+      max-width: 800px;
+      margin: 2em auto;
+      background: rgba(255, 255, 255, .25);
+      padding: 2em 2em 1em;
+    }
+
+    .slider {
+      display: flex;
+    }
+
+    .slide {
+      flex-basis: 0;
+      flex-shrink: 0;
+      flex-grow: 0;
+      opacity: 0;
+      transition: opacity 1.6s;
+    }
+
+    .slide img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .slide.active {
+      flex-grow: 10;
+      opacity: 1;
+    }
+
+    .slider-controls {
+      display: flex;
+      justify-content: space-between;
+      padding: 1em 1em 0;
+
+    }
+
+    .slider-controls span {
+      flex: 0 1 auto;
+      cursor: pointer;
+      align-self: center;
+    }
+
+    .slider-controls span.title {
+      font-size: 2em;
+      line-height: 1em;
+      cursor: auto;
+      text-align: center;
+    }
+
+    .slider-controls span svg {
+      width: 2em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <div class="slider">
+      <div class="slide slide1 active">
+        <img
+          src="https://images.unsplash.com/photo-1456440286046-98764af9fd1b?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=1a1efa6f79c146a8a8746f88031c0170"
+          alt="image">
+      </div>
+      <div class="slide slide2">
+        <img
+          src="https://images.unsplash.com/photo-1498259787149-407ab89f3abf?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=9b8e36490c915c72b4aba57e68a1f61c"
+          alt="image">
+      </div>
+      <div class="slide slide3">
+        <img
+          src="https://images.unsplash.com/photo-1494884020746-bd961a27fdc6?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=274e0c4aa51ea842c060254e37142c1f"
+          alt="image">
+      </div>
+      <div class="slide slide4">
+        <img
+          src="https://images.unsplash.com/photo-1499514829242-1e6065d0b34b?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=c3f44abdfe6c38ba843a52999be1f8fe"
+          alt="image">
+      </div>
+    </div>
+    <div class="slider-controls navigation">
+      <span class="nav-item" data-slide="prev">
+        <svg viewBox="0 0 91 91">
+          <g>
+            <path
+              d="M80.062,19.903c1.646-2.074,0.139-4.716-1.973-5.376c0.009-0.002,0.016-0.004,0.022-0.004   c-0.021-0.004-0.04-0.004-0.062-0.009c-0.782-0.235-1.644-0.191-2.454,0.249c-2.168,0.839-22.981,22.161-26.263,25.579   c-1.792,1.865-5.254,4.62-3.589,7.533c0.305,0.535,12.856,12.496,16.262,15.809c4.669,4.541,9.112,9.725,14.438,13.499   c1.306,0.927,2.971-0.874,2.16-2.162c-3.948-6.266-24.997-28.543-25.339-28.934C54.313,45.047,79.202,21.57,80.062,19.903z" />
+            <path
+              d="M51.476,0.717c-3.154,1.191-32.299,31.116-37.038,35.986c-2.691,2.769-7.148,6.22-6.431,10.486   c0.189,1.117,1.031,2.097,2.023,2.728c0.367,0.375,34.475,34.777,42.558,40.507c1.877,1.332,4.268-1.257,3.104-3.104   c-5.551-8.81-35.755-40.814-36.414-41.531c1.397-1.384,37.272-35.233,38.53-37.656c2.339-2.993,0.142-6.791-2.905-7.709   l0.123-0.033C54.872,0.361,52.502,0.192,51.476,0.717z" />
+          </g>
+        </svg>
+      </span>
+      <span class="title">FlexBox Slider</span>
+      <span class="nav-item" data-slide="next">
+        <svg viewBox="0 0 91 91">
+          <g>
+            <path
+              d="M37.426,46.086c-0.342,0.391-21.391,22.668-25.339,28.934c-0.811,1.288,0.854,3.089,2.16,2.162   c5.325-3.774,9.769-8.958,14.438-13.499c3.405-3.313,15.957-15.273,16.262-15.809c1.665-2.913-1.797-5.667-3.589-7.533   c-3.281-3.418-24.095-24.74-26.263-25.579c-0.811-0.439-1.672-0.483-2.454-0.249c-0.021,0.004-0.041,0.004-0.062,0.009   c0.007,0,0.014,0.002,0.022,0.004c-2.111,0.66-3.619,3.302-1.973,5.376C11.488,21.57,36.378,45.047,37.426,46.086z" />
+            <path
+              d="M39.215,0.717c3.154,1.191,32.3,31.116,37.038,35.986c2.691,2.769,7.148,6.22,6.431,10.486   c-0.188,1.117-1.03,2.097-2.023,2.728c-0.367,0.375-34.475,34.777-42.558,40.507c-1.877,1.332-4.268-1.257-3.104-3.104   c5.551-8.81,35.755-40.814,36.414-41.531c-1.396-1.384-37.272-35.233-38.53-37.656c-2.339-2.993-0.142-6.791,2.905-7.709   L35.665,0.39C35.818,0.361,38.188,0.192,39.215,0.717z" />
+          </g>
+        </svg>
+      </span>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide')
+    let current = 1
+
+    const nextSlide = () => { current = current === slides.length ? 1 : current + 1 }
+    const prevSlide = () => { current = current === 1 ? slides.length : current - 1 }
+
+    const slideTo = (direction) => {
+      document.querySelector(`.slide${current}`).classList.remove('active')
+      direction === 'prev' ? prevSlide() : nextSlide()
+      document.querySelector(`.slide${current}`).classList.add('active')
+    }
+
+    document.querySelectorAll('.nav-item')
+      .forEach(navItem => navItem.addEventListener('click', () => slideTo(navItem.dataset.slide)))
+
+  </script>
+</body>
+
+</html>
