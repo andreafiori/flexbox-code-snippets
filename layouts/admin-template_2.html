@@ -1,0 +1,260 @@
+<!-- https://codepen.io/bobtabor/pen/mENWLM -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+  .container {
+  display: flex;
+  flex-direction: row;
+  min-height:100vh;
+}
+
+.content {
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  flex-wrap:nowrap;
+  background-color:#ecf0f1;
+}
+
+.header {
+  height:100px;
+  background-color:#bdc3c7;
+  padding-left:20px;
+  padding-bottom:30px;
+}
+
+.page {
+  background-color:#ecf0f1;
+  height:100%;
+  justify-content:flex-start;
+  padding-left:20px;
+}
+
+/* Sidebar & Items */
+
+.sidebar {
+  display: flex;
+  background-color:#2c3e50;
+  flex-direction: column;
+  width:300px;
+	border:1px solid #000;
+}
+
+.item {
+  display:flex;
+  padding: 10px 30px;
+  color:white;
+  flex:1;
+  border-bottom: 2px solid white;
+  align-items:center;
+  max-height:80px;
+}
+
+.item:hover {
+  background-color:rgba(255,255,255,0.1);
+}
+
+
+/* Sidebar Checkbox Hack */
+
+label {
+  background-color:rgba(255, 255, 255,0.2);
+  font-size:1.5em;
+  padding:10px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+label:hover {
+  background-color:rgba(0,0,0,0.1);
+}
+
+input {
+	position:absolute;
+  display:none;
+}
+
+input[type=checkbox]:checked + div {
+	border:none;
+  display:none;
+}
+
+svg {
+  fill:#ecf0f1;
+  width: 16px;
+  height: 16px;
+  margin-right:5px;
+}
+
+/* Hidden Footer Checkbox Hack */
+
+.footer {
+  width:100vw;
+  border-bottom:none;
+  position:fixed;
+  right:0px;
+  bottom:0;
+  z-index:9999;
+}
+
+.footer > input[type="checkbox"] {
+  display:block;
+  margin:0 0;
+  padding:0 0;
+  position:absolute;
+  top:0;
+  right:0;
+  left:0;
+  width:100%;
+  height:26px;
+  z-index:4;
+  cursor:pointer;
+  opacity:0;
+  filter:alpha(opacity=0);
+}
+
+.footer > label {
+  float:right;
+  display:block;
+  height:24px;
+  line-height:24px;
+  width:25px;
+  background-color:#c0392b;
+  color:white;
+  font-size:2em;
+  font-weight:bold;
+  padding:0 1em 1px;
+  align:right;
+}
+
+.footer > label:before {content:attr(data-collapsed)}
+
+.footer-content {
+  padding:20px;
+  display:none;
+  height:100px;
+  background-color:#3498db;
+}
+
+.footer > input[type="checkbox"]:hover + label {background-color:#404D5A}
+.footer > input[type="checkbox"]:checked + label {background-color:#212A35}
+.footer > input[type="checkbox"]:checked + label:before {content:attr(data-expanded)}
+.footer > input[type="checkbox"]:checked ~ .footer-content {display:block}
+
+
+  </style>
+  
+</head>
+<body>
+  <div class="container">
+    <!--https://css-tricks.com/the-checkbox-hack/-->
+    <input type="checkbox" name="hide-sidebar" id="hide-sidebar">
+
+    <div class="sidebar">
+      
+      <div class="item logo">
+        LOGO
+      </div>
+      
+      <div class="item">
+        <svg class="gear">
+          <use xlink:href="#gear"></use>
+        </svg>        
+        Item 1
+      </div>
+      
+      <div class="item">
+        <svg class="dashboard">
+          <use xlink:href="#dashboard"></use>
+        </svg>
+        Item 2
+      </div>
+      
+      <div class="item">
+        <svg class="dollar">
+          <use xlink:href="#dollar"></use>
+        </svg>
+        Item 3
+      </div>
+      
+      <div class="item">
+        <svg>
+          <use xlink:href="#calendar"></use>
+        </svg>
+        Item 4
+      </div>
+        
+    </div> <!-- .sidebar end -->
+
+      <div class="content">
+        <div class="header">
+          <h1>Flexbox Based Admin Dashboard v. 0.1</h1>
+          <label for="hide-sidebar">&#9776;</label>
+        </div>
+
+        <div class="page">
+          <h2>This is View Template</h2>
+          <p>I originally created this for use in an ASP.NET MVC 5 / Core 1.0 project.  You would put the @RenderBody() here (inside the &lt;div class="page"&gt;) if this were a real _Layout.cshtml page.</p>
+          <h4>Features</h4>
+          <ul>
+            <li>CSS3 Flexbox!  (That was the easiest part!)</li>
+            <li>Only HTML5 and CSS3 ... NO JAVASCRIPT!  NO BOOTSTRAP!</li>
+            <li>NO IMAGES ... created an SVG Icon System using <a href="https://useiconic.com/open" target="_top">Iconic Open</a></li>
+            <li>Used the <a href="https://css-tricks.com/the-checkbox-hack/" target="_top">"Checkbox Hack"</a> for Sidebar and Footer</li>
+            <li>I only use <a href="http://flatuicolors.com/" target="_top">Flat UI Colors</a></li>
+          </ul>
+          
+          
+          <h4>Planned Improvements</h4>
+          <ul>
+            <li>More interactive elements in the header and footer areas (logout, view profile, messages, etc. typical admin dashboard stuff)</li>
+            <li>Resizeable?</li>
+            <li>Responsive / Mobile Friendly</li>
+            <li>Sass</li>
+            <li>Fix tiny bugs here and there</li>
+          </ul>
+          
+        </div> <!-- .page end -->
+            
+        <div class="footer">
+          <input type="checkbox" />  
+            <label data-expanded="-" data-collapsed="+"></label>
+            <div class="footer-content">
+              <h3>This is the footer</h3>
+            </div>
+      </div> <!-- .footer end -->
+        
+    </div> <!-- .content end -->
+  </div> <!-- .container end -->
+</body>
+  
+  <!-- My mini SVG icon system -->
+  <!-- compliments of Open Iconic https://useiconic.com/open -->
+  <svg xmlns="http://www.w3.org/2000/svg"  style="display:none;">
+    <defs>
+      <symbol id="gear" viewBox="0 0 8 8" width="8" height="8">
+  <path d="M3.5 0l-.5 1.19c-.1.03-.19.08-.28.13l-1.19-.5-.72.72.5 1.19c-.05.1-.09.18-.13.28l-1.19.5v1l1.19.5c.04.1.08.18.13.28l-.5 1.19.72.72 1.19-.5c.09.04.18.09.28.13l.5 1.19h1l.5-1.19c.09-.04.19-.08.28-.13l1.19.5.72-.72-.5-1.19c.04-.09.09-.19.13-.28l1.19-.5v-1l-1.19-.5c-.03-.09-.08-.19-.13-.28l.5-1.19-.72-.72-1.19.5c-.09-.04-.19-.09-.28-.13l-.5-1.19h-1zm.5 2.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5-1.5-.67-1.5-1.5.67-1.5 1.5-1.5z"
+  />        
+      </symbol>
+      <symbol id="dashboard" xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">
+  <path d="M4 0c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 1c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 1c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5zm-1.66 1a.5.5 0 0 0-.19.84l.91.91c-.02.08-.06.16-.06.25 0 .55.45 1 1 1s1-.45 1-1-.45-1-1-1c-.09 0-.17.04-.25.06l-.91-.91a.5.5 0 0 0-.44-.16.5.5 0 0 0-.06 0zm3.16 0c-.28 0-.5.22-.5.5s.22.5.5.5.5-.22.5-.5-.22-.5-.5-.5z"
+  />        
+      </symbol>
+      <symbol id="dollar" viewBox="0 0 8 8" width="8" height="8">
+<path d="M0 0v2h7v-2h-7zm0 3v4.91c0 .05.04.09.09.09h6.81c.05 0 .09-.04.09-.09v-4.91h-7zm1 1h1v1h-1v-1zm2 0h1v1h-1v-1zm2 0h1v1h-1v-1zm-4 2h1v1h-1v-1zm2 0h1v1h-1v-1z" />      
+      </symbol>
+      <symbol id="calendar" viewBox="0 0 8 8" width="8" height="8">
+<path d="M2 0v1h-.75c-.68 0-1.25.57-1.25 1.25v.5c0 .68.44 1.24 1.09 1.41l2.56.66c.14.04.34.29.34.44v.5c0 .14-.11.25-.25.25h-2.5c-.12 0-.21-.04-.25-.06v-.94h-1v1c0 .34.2.63.44.78.23.16.52.22.81.22h.75v1h1v-1h.75c.69 0 1.25-.56 1.25-1.25v-.5c0-.68-.44-1.24-1.09-1.41l-2.56-.66c-.14-.04-.34-.29-.34-.44v-.5c0-.14.11-.25.25-.25h2.5c.11 0 .21.04.25.06v.94h1v-1c0-.34-.2-.63-.44-.78-.23-.16-.52-.22-.81-.22h-.75v-1h-1z"
+  transform="translate(1)" />      
+      </symbol>
+      <symbol id="people" xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8">
+  <path d="M5.5 0c-.51 0-.95.35-1.22.88.45.54.72 1.28.72 2.13 0 .29-.03.55-.09.81.19.11.38.19.59.19.83 0 1.5-.9 1.5-2s-.67-2-1.5-2zm-3 1c-.83 0-1.5.9-1.5 2s.67 2 1.5 2 1.5-.9 1.5-2-.67-2-1.5-2zm4.75 3.16c-.43.51-1.02.82-1.69.84.27.38.44.84.44 1.34v.66h2v-1.66c0-.52-.31-.97-.75-1.19zm-6.5 1c-.44.22-.75.67-.75 1.19v1.66h5v-1.66c0-.52-.31-.97-.75-1.19-.45.53-1.06.84-1.75.84s-1.3-.32-1.75-.84z"
+  />        
+      </symbol>
+    </defs>
+  </svg>  
+  
+</html>
